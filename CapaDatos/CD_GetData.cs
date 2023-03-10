@@ -36,5 +36,28 @@ namespace CapaDatos
             db_connection.CloseConnection();
             return dataTable;
         }
+        public DataTable InfoUser(int p_user)
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "InfoUser";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@iduser", p_user);
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+
+            try
+            {
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType().Name + ":" + ex.Message);
+            }
+            db_connection.CloseConnection();
+            return dataTable;
+        }
     }
 }

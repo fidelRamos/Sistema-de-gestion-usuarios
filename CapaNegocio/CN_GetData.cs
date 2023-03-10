@@ -17,5 +17,11 @@ namespace CapaNegocio
             myTable = objectCD.ObtenerAlumnos(p_user,p_pass);
             return myTable;
         }
+        public DataTable InfoUser(string p_user)
+        {
+            DataTable myTable = new DataTable();
+            myTable = objectCD.InfoUser(Int32.Parse(p_user));
+            return myTable;
+        }
     }
 }

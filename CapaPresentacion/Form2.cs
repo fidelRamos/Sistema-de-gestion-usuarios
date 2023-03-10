@@ -29,7 +29,7 @@ namespace CapaPresentacion
         }
         private void CargarProvincias()
         {
-            dataGridView1.DataSource = objCapaNegocio.GetDataAlumnos(user, password);
+            dataGridView1.DataSource = objCapaNegocio.InfoUser(objCapaNegocio.GetDataAlumnos(user, password).Rows[0][0].ToString());
         }
     }
 }
