@@ -59,5 +59,21 @@ namespace CapaDatos
             db_connection.CloseConnection();
             return dataTable;
         }
+
+        public SqlDataReader reader(int p_user)
+        {
+
+            
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "sp_get_role_module_options";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@iduser", p_user);
+            
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+           
+            return reader;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,12 @@ namespace CapaNegocio
             DataTable myTable = new DataTable();
             myTable = objectCD.InfoUser(Int32.Parse(p_user));
             return myTable;
+        }
+        public SqlDataReader reader(string p_user)
+        {
+            SqlDataReader reader = objectCD.reader(Int32.Parse(p_user));
+           
+            return reader;
         }
     }
 }
