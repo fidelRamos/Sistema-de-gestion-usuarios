@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,6 +44,7 @@ namespace CapaPresentacion
                 {
                     // si no existe, crear un nuevo menú para el módulo
                     ToolStripMenuItem moduleMenu = new ToolStripMenuItem(optionName);
+                   
                     moduleMenus.Add(optionName, moduleMenu);
                     menuStrip.Items.Add(moduleMenu);
                 }
@@ -50,8 +52,9 @@ namespace CapaPresentacion
                 // agregar la opción al menú correspondiente
                 ToolStripMenuItem optionItem = new ToolStripMenuItem(moduleName);
                 optionItem.Tag = roleName;
-                
+                optionItem.Click += new EventHandler(item_Click);//agg el evento click a la opcion
                 moduleMenus[optionName].DropDownItems.Add(optionItem);
+                
             }
             reader.Close();
             this.Controls.Add(menuStrip);
@@ -81,6 +84,49 @@ namespace CapaPresentacion
         {
 
             //dataGridView1.DataSource = objCapaNegocio.InfoUser(objCapaNegocio.GetDataAlumnos(user, password).Rows[0][0].ToString());
+        }
+
+        private void  item_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            
+            
+            if (item != null) {
+                string nombre = item.Text;
+                identificarModulo(nombre);
+            }
+            
+        }
+        private void identificarModulo(string nombre)
+        {
+            switch (nombre)
+            {
+                case "MANTENIMIENTO ROL":
+                    //Salta form de CRUD Rol
+                    RolesCRUD formRol = new RolesCRUD();
+                    formRol.Show();
+                    break;
+                case "MANTENIMIENTO USUARIOS":
+                    //Salta form de CRUD usuarios
+                    UsuariosCRUD formUsuarios = new UsuariosCRUD();
+                    formUsuarios.Show();
+                    break;
+                case "MANTENIMIENTO DE MODULOS": //falta agg al sql ??
+                    //Salta form de CRUD sistema
+                    ModulosCRUD formModulos = new ModulosCRUD();
+                    formModulos.Show();
+                    break;
+                case "MANTENIMIENTO OPCIONES DE MODULOS"://falta agg al sql
+                    //Salta form de Opciones de modulos
+                    OpcModCRUD formOpMod = new OpcModCRUD();
+                    formOpMod.Show();
+                    break;
+                case "MANTENIMIENTO MODULOS DE ROLES": //falta agg al sql
+                    //Salta form de CRUD sistema
+                    manteRolModulo formRolModu = new manteRolModulo();
+                    formRolModu.Show();
+                    break;
+            }
         }
     }
 }
