@@ -38,6 +38,22 @@ namespace CapaNegocio
             myTable = objectCD.ObtenerRoles();
             return myTable;
         }
+        public string GetRol(int idRol)
+        {
+            string rolbuscado=null;
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerRoles();
+            foreach (DataRow row in myTable.Rows)
+            {
+                if ((int)row[0] == idRol)
+                {
+                    rolbuscado = row[1].ToString();
+                    break; 
+                }
+            }
+
+            return rolbuscado;
+        }
         public void InsertarRol(string nombreRol)
         {
             objectCD.InsertarRol(nombreRol);
@@ -49,6 +65,26 @@ namespace CapaNegocio
         public void EliminarRol(string idRol)
         {
             objectCD.EliminarRol(int.Parse(idRol));        
+        }
+        
+        //Usuarios
+        public DataTable GetDataUsuarios()
+        {
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerUsuarios();
+            return myTable;
+        }
+        public void InsertarUsuario(string username, string clave, string idrol, string nombres, string telefono, string dirDomic, string correo)
+        {
+            objectCD.InsertarUsuario(username, clave, int.Parse(idrol), nombres, telefono, dirDomic, correo);
+        }
+        public void ActualizarUsuario(string idUsuario, string username, string clave, string idrol, string nombres, string telefono, string dirDomic, string correo)
+        {
+            objectCD.ActualizarUser(int.Parse(idUsuario),username, clave, int.Parse(idrol), nombres, telefono, dirDomic, correo);
+        }
+        public void EliminarUsuario(string idUser)
+        {
+            objectCD.EliminarUser(int.Parse(idUser));
         }
     }
 }
