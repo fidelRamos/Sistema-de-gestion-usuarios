@@ -75,5 +75,62 @@ namespace CapaDatos
            
             return reader;
         }
+
+        ///ROL
+        public void InsertarRol(string nombreRol)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "insertar_rol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@nombreRol", nombreRol);
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+        }
+        public void ActualizarRol(int idRol, string nombreRol, char estado)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "modificar_rol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idRol", idRol);
+            sqlCommand.Parameters.AddWithValue("@nombreRol", estado);
+            sqlCommand.Parameters.AddWithValue("@estado", nombreRol);
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+        }
+        public void EliminarRol(int idRol)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "eliminar_rol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idRol", idRol);
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+        }
+        public DataTable ObtenerRoles()
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "mostrar_rol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            try
+            {
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType().Name + ":" + ex.Message);
+            }
+            db_connection.CloseConnection();
+            return dataTable;
+        }
+
+        
+       
     }
 }

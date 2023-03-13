@@ -30,5 +30,25 @@ namespace CapaNegocio
            
             return reader;
         }
+
+        //Roles
+        public DataTable GetDataRoles()
+        {
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerRoles();
+            return myTable;
+        }
+        public void InsertarRol(string nombreRol)
+        {
+            objectCD.InsertarRol(nombreRol);
+        }
+        public void ActualizarRol(string idRol, string nombreRol, string estado)
+        {
+            objectCD.ActualizarRol(int.Parse(idRol),nombreRol,char.Parse(estado));
+        }
+        public void EliminarRol(string idRol)
+        {
+            objectCD.EliminarRol(int.Parse(idRol));        
+        }
     }
 }
