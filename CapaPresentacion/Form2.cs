@@ -101,6 +101,7 @@ namespace CapaPresentacion
         {
             switch (nombre)
             {
+                //MODULO SEGURIDAD - ADMIN
                 case "MANTENIMIENTO ROL":
                     //Salta form de CRUD Rol
                     RolesCRUD formRol = new RolesCRUD();
@@ -111,7 +112,7 @@ namespace CapaPresentacion
                     UsuariosCRUD formUsuarios = new UsuariosCRUD();
                     formUsuarios.Show();
                     break;
-                case "MANTENIMIENTO DE MODULOS": //falta agg al sql ??
+                case "MODULOS DEL SISTEMA": 
                     //Salta form de CRUD sistema
                     ModulosCRUD formModulos = new ModulosCRUD();
                     formModulos.Show();
@@ -126,6 +127,8 @@ namespace CapaPresentacion
                     manteRolModulo formRolModu = new manteRolModulo();
                     formRolModu.Show();
                     break;
+
+                // MODULO ESTUDIANTE
                 case "MANTENIMIENTO ESTUDIANTE": //falta agg al sql
                     //Salta form de CRUD Estudiante
                     EstudiantesCRUD formEstudiante = new EstudiantesCRUD();
