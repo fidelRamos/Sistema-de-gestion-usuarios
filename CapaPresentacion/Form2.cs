@@ -126,6 +126,11 @@ namespace CapaPresentacion
                     manteRolModulo formRolModu = new manteRolModulo();
                     formRolModu.Show();
                     break;
+                case "MANTENIMIENTO ESTUDIANTE": //falta agg al sql
+                    //Salta form de CRUD Estudiante
+                    EstudiantesCRUD formEstudiante = new EstudiantesCRUD();
+                    formEstudiante.Show();
+                    break;
             }
         }
     }
