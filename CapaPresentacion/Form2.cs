@@ -39,19 +39,19 @@ namespace CapaPresentacion
                 string optionName = reader.GetString(2);
 
                 // crear el menú dinámico utilizando los datos obtenidos
-                if (!moduleMenus.ContainsKey(moduleName))
+                if (!moduleMenus.ContainsKey(optionName))
                 {
                     // si no existe, crear un nuevo menú para el módulo
-                    ToolStripMenuItem moduleMenu = new ToolStripMenuItem(moduleName);
-                    moduleMenus.Add(moduleName, moduleMenu);
+                    ToolStripMenuItem moduleMenu = new ToolStripMenuItem(optionName);
+                    moduleMenus.Add(optionName, moduleMenu);
                     menuStrip.Items.Add(moduleMenu);
                 }
 
                 // agregar la opción al menú correspondiente
-                ToolStripMenuItem optionItem = new ToolStripMenuItem(optionName);
+                ToolStripMenuItem optionItem = new ToolStripMenuItem(moduleName);
                 optionItem.Tag = roleName;
                 
-                moduleMenus[moduleName].DropDownItems.Add(optionItem);
+                moduleMenus[optionName].DropDownItems.Add(optionItem);
             }
             reader.Close();
             this.Controls.Add(menuStrip);
