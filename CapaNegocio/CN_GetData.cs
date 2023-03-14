@@ -105,5 +105,40 @@ namespace CapaNegocio
         {
             objectCD.EliminarModulo(int.Parse(idMod));
         }
+        //OPC MODULOS
+        public DataTable GetDataOpcMod()
+        {
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerOpcModulos();
+            return myTable;
+        }
+        public void InsertarOpcMod(string nombreOpcion, string idModulo)
+        {
+            objectCD.InsertarOpcMod(nombreOpcion, idModulo);
+        }
+        public void ActualizarOpcMod(string id_opc_mod, string nombreOpcion, string nombre_Objeto, string idModulo, string estado)
+        {
+            objectCD.ActualizarOpcMod(int.Parse(id_opc_mod), nombreOpcion, nombre_Objeto, int.Parse(idModulo), char.Parse(estado));
+        }
+        public void EliminarOpcMod(string id_opc_mod)
+        {
+            objectCD.EliminarOpcMod(int.Parse(id_opc_mod));
+        }
+        public string GetMod(int idRol)
+        {
+            string modbuscado = null;
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerModulos();
+            foreach (DataRow row in myTable.Rows)
+            {
+                if ((int)row[0]== idRol)
+                {
+                    modbuscado = row[1].ToString();
+                    break;
+                }
+            }
+
+            return modbuscado;
+        }
     }
 }

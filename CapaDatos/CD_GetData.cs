@@ -297,5 +297,25 @@ namespace CapaDatos
             sqlCommand.ExecuteNonQuery();
             db_connection.CloseConnection();
         }
+        public DataTable ObtenerOpcModulos()
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "mostrar_opc_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            try
+            {
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType().Name + ":" + ex.Message);
+            }
+            db_connection.CloseConnection();
+            return dataTable;
+        }
     }
 }

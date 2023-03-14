@@ -37,12 +37,16 @@
             this.txtNombreOPC = new System.Windows.Forms.TextBox();
             this.txtNombreMod = new System.Windows.Forms.TextBox();
             this.cbIDMod = new System.Windows.Forms.ComboBox();
+            this.lbNombreObj = new System.Windows.Forms.Label();
+            this.lbEstado = new System.Windows.Forms.Label();
+            this.txtNombreObj = new System.Windows.Forms.TextBox();
+            this.cbEstado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpcMod)).BeginInit();
             this.SuspendLayout();
             // 
             // bttGuardar
             // 
-            this.bttGuardar.Location = new System.Drawing.Point(122, 221);
+            this.bttGuardar.Location = new System.Drawing.Point(121, 267);
             this.bttGuardar.Name = "bttGuardar";
             this.bttGuardar.Size = new System.Drawing.Size(75, 23);
             this.bttGuardar.TabIndex = 0;
@@ -119,12 +123,57 @@
             this.cbIDMod.Name = "cbIDMod";
             this.cbIDMod.Size = new System.Drawing.Size(45, 23);
             this.cbIDMod.TabIndex = 8;
+            this.cbIDMod.SelectedIndexChanged += new System.EventHandler(this.cbIDMod_SelectedIndexChanged);
+            // 
+            // lbNombreObj
+            // 
+            this.lbNombreObj.AutoSize = true;
+            this.lbNombreObj.Location = new System.Drawing.Point(37, 178);
+            this.lbNombreObj.Name = "lbNombreObj";
+            this.lbNombreObj.Size = new System.Drawing.Size(88, 15);
+            this.lbNombreObj.TabIndex = 9;
+            this.lbNombreObj.Text = "Nombre objeto";
+            this.lbNombreObj.Visible = false;
+            // 
+            // lbEstado
+            // 
+            this.lbEstado.AutoSize = true;
+            this.lbEstado.Location = new System.Drawing.Point(37, 220);
+            this.lbEstado.Name = "lbEstado";
+            this.lbEstado.Size = new System.Drawing.Size(42, 15);
+            this.lbEstado.TabIndex = 10;
+            this.lbEstado.Text = "Estado";
+            this.lbEstado.Visible = false;
+            // 
+            // txtNombreObj
+            // 
+            this.txtNombreObj.Location = new System.Drawing.Point(169, 170);
+            this.txtNombreObj.Name = "txtNombreObj";
+            this.txtNombreObj.Size = new System.Drawing.Size(151, 23);
+            this.txtNombreObj.TabIndex = 11;
+            this.txtNombreObj.Visible = false;
+            // 
+            // cbEstado
+            // 
+            this.cbEstado.FormattingEnabled = true;
+            this.cbEstado.Items.AddRange(new object[] {
+            "A",
+            "N"});
+            this.cbEstado.Location = new System.Drawing.Point(169, 212);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(70, 23);
+            this.cbEstado.TabIndex = 12;
+            this.cbEstado.Visible = false;
             // 
             // OpcModCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbEstado);
+            this.Controls.Add(this.txtNombreObj);
+            this.Controls.Add(this.lbEstado);
+            this.Controls.Add(this.lbNombreObj);
             this.Controls.Add(this.cbIDMod);
             this.Controls.Add(this.txtNombreMod);
             this.Controls.Add(this.txtNombreOPC);
@@ -154,5 +203,9 @@
         private TextBox txtNombreOPC;
         private TextBox txtNombreMod;
         private ComboBox cbIDMod;
+        private Label lbNombreObj;
+        private Label lbEstado;
+        private TextBox txtNombreObj;
+        private ComboBox cbEstado;
     }
 }
