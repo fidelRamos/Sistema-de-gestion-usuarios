@@ -16,5 +16,30 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void manteRolModulo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttAggNewMod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttAsignacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
