@@ -257,5 +257,45 @@ namespace CapaDatos
             db_connection.CloseConnection();
             return dataTable;
         }
+        //OPC MODULOS
+        public void InsertarOpcMod(string nombreOpcion, string idModulo)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "insertar_opc_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@nombreOpcion", nombreOpcion);
+            sqlCommand.Parameters.AddWithValue("@idModulo", idModulo);
+
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+        }
+        public void ActualizarOpcMod(int id_opc_mod, string nombreOpcion, string nombre_Objeto, int idModulo, char estado)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "modificar_opc_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@id_opc_mod", id_opc_mod);
+            sqlCommand.Parameters.AddWithValue("@nombreOpcion", nombreOpcion);
+            sqlCommand.Parameters.AddWithValue("@nombre_Objeto", nombre_Objeto);
+            sqlCommand.Parameters.AddWithValue("@idModulo", idModulo);
+            sqlCommand.Parameters.AddWithValue("@estado", estado);
+
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+
+        }
+        public void EliminarOpcMod(int id_opc_mod)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "eliminar_opc_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@id_opc_mod", id_opc_mod);
+
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+        }
     }
 }
