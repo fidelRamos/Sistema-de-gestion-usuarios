@@ -107,8 +107,8 @@
             // 
             this.comboBEstado.FormattingEnabled = true;
             this.comboBEstado.Items.AddRange(new object[] {
-            "Activo [A]",
-            "No activo [N]"});
+            "A",
+            "N"});
             this.comboBEstado.Location = new System.Drawing.Point(122, 184);
             this.comboBEstado.Name = "comboBEstado";
             this.comboBEstado.Size = new System.Drawing.Size(121, 23);

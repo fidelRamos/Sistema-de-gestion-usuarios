@@ -197,5 +197,65 @@ namespace CapaDatos
             db_connection.CloseConnection();
             return dataTable;
         }
+        
+        //MODULOS
+        public void InsertarModulo(string nombreMod, string nombreObj)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "insertar_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@nombreMod", nombreMod);
+            sqlCommand.Parameters.AddWithValue("@nombreObj", nombreObj);
+
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+
+        }
+        public void ActualizarModulos(int idModulo, string nombreMod, string nombreObj, char estado)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "modificar_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idMod", idModulo);
+            sqlCommand.Parameters.AddWithValue("@nombreMod", nombreMod);
+            sqlCommand.Parameters.AddWithValue("@nombreObj", nombreMod);
+            sqlCommand.Parameters.AddWithValue("@estado", estado);
+
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+
+        }
+        public void EliminarModulo(int idMod)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "eliminar_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idMod", idMod);
+            sqlCommand.ExecuteNonQuery();
+            db_connection.CloseConnection();
+        }
+        public DataTable ObtenerModulos()
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "mostrar_mod";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            try
+            {
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType().Name + ":" + ex.Message);
+            }
+            db_connection.CloseConnection();
+            return dataTable;
+        }
     }
 }

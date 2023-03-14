@@ -86,5 +86,24 @@ namespace CapaNegocio
         {
             objectCD.EliminarUser(int.Parse(idUser));
         }
+        //MODULOS
+        public DataTable GetDataModulos()
+        {
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerModulos();
+            return myTable;
+        }
+        public void InsertarModulo(string nombreMod, string nombreObj)
+        {
+            objectCD.InsertarModulo(nombreMod, nombreObj);
+        }
+        public void ActualizarModulo(string idModulo, string nombreMod, string nombreObj, string estado)
+        {
+            objectCD.ActualizarModulos(int.Parse(idModulo), nombreMod, nombreObj, char.Parse(estado));
+        }
+        public void EliminarModulo(string idMod)
+        {
+            objectCD.EliminarModulo(int.Parse(idMod));
+        }
     }
 }
