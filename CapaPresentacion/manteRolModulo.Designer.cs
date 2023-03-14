@@ -32,18 +32,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.dgvModulos = new System.Windows.Forms.DataGridView();
-            this.bttAggNewMod = new System.Windows.Forms.Button();
             this.bttEliminar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbModulos = new System.Windows.Forms.ComboBox();
+            this.gbRegisRolxMod = new System.Windows.Forms.GroupBox();
+            this.txtModulo = new System.Windows.Forms.TextBox();
+            this.txtRol = new System.Windows.Forms.TextBox();
             this.bttRegistrar = new System.Windows.Forms.Button();
-            this.bttAsignacion = new System.Windows.Forms.Button();
+            this.cbModulos = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModulos)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbRegisRolxMod.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -70,8 +70,10 @@
             this.dgvRoles.Location = new System.Drawing.Point(26, 58);
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.RowTemplate.Height = 25;
-            this.dgvRoles.Size = new System.Drawing.Size(519, 131);
+            this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRoles.Size = new System.Drawing.Size(478, 131);
             this.dgvRoles.TabIndex = 2;
+            this.dgvRoles.SelectionChanged += new System.EventHandler(this.dgvRoles_SelectionChanged);
             // 
             // dgvModulos
             // 
@@ -79,18 +81,8 @@
             this.dgvModulos.Location = new System.Drawing.Point(31, 225);
             this.dgvModulos.Name = "dgvModulos";
             this.dgvModulos.RowTemplate.Height = 25;
-            this.dgvModulos.Size = new System.Drawing.Size(514, 150);
+            this.dgvModulos.Size = new System.Drawing.Size(473, 150);
             this.dgvModulos.TabIndex = 3;
-            // 
-            // bttAggNewMod
-            // 
-            this.bttAggNewMod.Location = new System.Drawing.Point(605, 58);
-            this.bttAggNewMod.Name = "bttAggNewMod";
-            this.bttAggNewMod.Size = new System.Drawing.Size(183, 23);
-            this.bttAggNewMod.TabIndex = 4;
-            this.bttAggNewMod.Text = "Agregar nuevo Modulos";
-            this.bttAggNewMod.UseVisualStyleBackColor = true;
-            this.bttAggNewMod.Click += new System.EventHandler(this.bttAggNewMod_Click);
             // 
             // bttEliminar
             // 
@@ -116,8 +108,9 @@
             this.cbRol.FormattingEnabled = true;
             this.cbRol.Location = new System.Drawing.Point(90, 44);
             this.cbRol.Name = "cbRol";
-            this.cbRol.Size = new System.Drawing.Size(134, 23);
+            this.cbRol.Size = new System.Drawing.Size(41, 23);
             this.cbRol.TabIndex = 7;
+            this.cbRol.SelectedIndexChanged += new System.EventHandler(this.cbRol_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -128,58 +121,64 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Modulos";
             // 
-            // groupBox1
+            // gbRegisRolxMod
             // 
-            this.groupBox1.Controls.Add(this.bttRegistrar);
-            this.groupBox1.Controls.Add(this.cbModulos);
-            this.groupBox1.Controls.Add(this.cbRol);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(605, 98);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 211);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Registro";
-            this.groupBox1.Visible = false;
+            this.gbRegisRolxMod.Controls.Add(this.txtModulo);
+            this.gbRegisRolxMod.Controls.Add(this.txtRol);
+            this.gbRegisRolxMod.Controls.Add(this.bttRegistrar);
+            this.gbRegisRolxMod.Controls.Add(this.cbModulos);
+            this.gbRegisRolxMod.Controls.Add(this.cbRol);
+            this.gbRegisRolxMod.Controls.Add(this.label4);
+            this.gbRegisRolxMod.Controls.Add(this.label3);
+            this.gbRegisRolxMod.Location = new System.Drawing.Point(605, 58);
+            this.gbRegisRolxMod.Name = "gbRegisRolxMod";
+            this.gbRegisRolxMod.Size = new System.Drawing.Size(401, 205);
+            this.gbRegisRolxMod.TabIndex = 9;
+            this.gbRegisRolxMod.TabStop = false;
+            this.gbRegisRolxMod.Text = "Registro";
+            // 
+            // txtModulo
+            // 
+            this.txtModulo.Location = new System.Drawing.Point(140, 92);
+            this.txtModulo.Name = "txtModulo";
+            this.txtModulo.ReadOnly = true;
+            this.txtModulo.Size = new System.Drawing.Size(225, 23);
+            this.txtModulo.TabIndex = 12;
+            // 
+            // txtRol
+            // 
+            this.txtRol.Location = new System.Drawing.Point(137, 44);
+            this.txtRol.Name = "txtRol";
+            this.txtRol.ReadOnly = true;
+            this.txtRol.Size = new System.Drawing.Size(228, 23);
+            this.txtRol.TabIndex = 11;
+            // 
+            // bttRegistrar
+            // 
+            this.bttRegistrar.Location = new System.Drawing.Point(166, 144);
+            this.bttRegistrar.Name = "bttRegistrar";
+            this.bttRegistrar.Size = new System.Drawing.Size(75, 23);
+            this.bttRegistrar.TabIndex = 10;
+            this.bttRegistrar.Text = "Guardar";
+            this.bttRegistrar.UseVisualStyleBackColor = true;
+            this.bttRegistrar.Click += new System.EventHandler(this.bttRegistrar_Click);
             // 
             // cbModulos
             // 
             this.cbModulos.FormattingEnabled = true;
             this.cbModulos.Location = new System.Drawing.Point(90, 92);
             this.cbModulos.Name = "cbModulos";
-            this.cbModulos.Size = new System.Drawing.Size(134, 23);
+            this.cbModulos.Size = new System.Drawing.Size(41, 23);
             this.cbModulos.TabIndex = 9;
-            // 
-            // bttRegistrar
-            // 
-            this.bttRegistrar.Location = new System.Drawing.Point(90, 168);
-            this.bttRegistrar.Name = "bttRegistrar";
-            this.bttRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.bttRegistrar.TabIndex = 10;
-            this.bttRegistrar.Text = "Registrar";
-            this.bttRegistrar.UseVisualStyleBackColor = true;
-            this.bttRegistrar.Click += new System.EventHandler(this.bttRegistrar_Click);
-            // 
-            // bttAsignacion
-            // 
-            this.bttAsignacion.Location = new System.Drawing.Point(173, 381);
-            this.bttAsignacion.Name = "bttAsignacion";
-            this.bttAsignacion.Size = new System.Drawing.Size(127, 23);
-            this.bttAsignacion.TabIndex = 10;
-            this.bttAsignacion.Text = "Editar Asignación";
-            this.bttAsignacion.UseVisualStyleBackColor = true;
-            this.bttAsignacion.Click += new System.EventHandler(this.bttAsignacion_Click);
+            this.cbModulos.SelectedIndexChanged += new System.EventHandler(this.cbModulos_SelectedIndexChanged);
             // 
             // manteRolModulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 450);
-            this.Controls.Add(this.bttAsignacion);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1045, 450);
+            this.Controls.Add(this.gbRegisRolxMod);
             this.Controls.Add(this.bttEliminar);
-            this.Controls.Add(this.bttAggNewMod);
             this.Controls.Add(this.dgvModulos);
             this.Controls.Add(this.dgvRoles);
             this.Controls.Add(this.label2);
@@ -189,8 +188,8 @@
             this.Load += new System.EventHandler(this.manteRolModulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModulos)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbRegisRolxMod.ResumeLayout(false);
+            this.gbRegisRolxMod.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,14 +201,14 @@
         private Label label2;
         private DataGridView dgvRoles;
         private DataGridView dgvModulos;
-        private Button bttAggNewMod;
         private Button bttEliminar;
         private Label label3;
         private ComboBox cbRol;
         private Label label4;
-        private GroupBox groupBox1;
+        private GroupBox gbRegisRolxMod;
         private Button bttRegistrar;
         private ComboBox cbModulos;
-        private Button bttAsignacion;
+        private TextBox txtModulo;
+        private TextBox txtRol;
     }
 }
