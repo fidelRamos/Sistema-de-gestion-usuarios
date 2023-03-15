@@ -48,7 +48,7 @@ namespace CapaPresentacion
                 try
                 {
                     int indiceSelect = dgvModulos.CurrentCell.RowIndex + 1;
-                    //objectCN.ActualizarUsuario(indiceSelect.ToString(), txtUsername.Text, txtContrasena.Text, CbBxIDRol.Text, txtNombres.Text, txtNumCel.Text, txtDireccDomic.Text, txtCorreo.Text);
+                    objectCN.ActualizarModulo(indiceSelect.ToString(),txtNombreMod.Text,txtNombreObj.Text,cbEstado.Text);
                     MessageBox.Show("Registro Modificado");
                     edicion = false;
                     lbEstado.Visible = false;

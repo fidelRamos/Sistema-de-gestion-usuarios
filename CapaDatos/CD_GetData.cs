@@ -317,5 +317,71 @@ namespace CapaDatos
             db_connection.CloseConnection();
             return dataTable;
         }
+
+        //ROL X MODULO
+        
+        public DataTable obtOpcModDelRol(int idRol)
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "obtOpcModDelRol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idRol", idRol);
+
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            try
+            {
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType().Name + ":" + ex.Message);
+            }
+            db_connection.CloseConnection();
+            return dataTable;
+        }
+        public void InsertartOpcModDelRol(int idModRol, int idRol)
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "insertar_modXrol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idModRol", idModRol);
+            sqlCommand.Parameters.AddWithValue("@idRol", idRol);
+
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+        }
+        public void EliminarOpcModDelRol(int idOpcMod, int idRol)
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "eliminar_modXrol";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idModRol", idOpcMod);
+            sqlCommand.Parameters.AddWithValue("idRol", idRol);
+
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+        }
+        public void ModificarOpcModDelRol(int idOpcModRol,int @idOpcMod, int @idRol, char estado)
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = db_connection.OpenConnection();
+            sqlCommand.CommandText = "editarModRol ";
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@idOpcModRol", idOpcModRol);
+            sqlCommand.Parameters.AddWithValue("@@idOpcMod", @idOpcMod);
+            sqlCommand.Parameters.AddWithValue("@@idRol", @idRol);
+            sqlCommand.Parameters.AddWithValue("@estado", estado);
+            
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+        }
     }
 }

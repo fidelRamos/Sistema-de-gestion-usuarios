@@ -140,5 +140,37 @@ namespace CapaNegocio
 
             return modbuscado;
         }
+
+        //mod X rol
+        public DataTable GetOpcModDelRol(string idRol)
+        {
+            DataTable myTable = new DataTable();
+            myTable = objectCD.obtOpcModDelRol(int.Parse(idRol));
+            return myTable;
+        }
+        public void EliminarOpcModDelRol(string idOpcMod, string idRol)
+        {
+            objectCD.EliminarOpcModDelRol(int.Parse(idOpcMod), int.Parse(idRol));
+        }
+        public void InsertartOpcModDelRol(string idModRol, string idRol)
+        {
+            objectCD.InsertartOpcModDelRol(int.Parse(idModRol), int.Parse(idRol));
+        }
+        public string GetOpcMod(int idRol)
+        {
+            string OpcModBuscado= null;
+            DataTable myTable = new DataTable();
+            myTable = objectCD.ObtenerOpcModulos();
+            foreach (DataRow row in myTable.Rows)
+            {
+                if ((int)row[0] == idRol)
+                {
+                    OpcModBuscado = row[1].ToString();
+                    break;
+                }
+            }
+
+            return OpcModBuscado;
+        }
     }
 }
