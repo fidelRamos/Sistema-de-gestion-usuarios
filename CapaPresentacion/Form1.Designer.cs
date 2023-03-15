@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
@@ -36,8 +37,10 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.PB_user = new System.Windows.Forms.PictureBox();
             this.GB_session = new System.Windows.Forms.GroupBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PB_user)).BeginInit();
             this.GB_session.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxUser
@@ -107,6 +110,10 @@
             this.GB_session.TabStop = false;
             this.GB_session.Text = "Datos de sesion";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -121,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PB_user)).EndInit();
             this.GB_session.ResumeLayout(false);
             this.GB_session.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -134,5 +142,6 @@
         private Button btnLogin;
         private PictureBox PB_user;
         private GroupBox GB_session;
+        private ErrorProvider errorProvider1;
     }
 }

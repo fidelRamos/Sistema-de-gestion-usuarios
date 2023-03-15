@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RolesCRUD));
             this.bttGuardar = new System.Windows.Forms.Button();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
@@ -38,8 +39,10 @@
             this.txtNombreRol = new System.Windows.Forms.TextBox();
             this.comboBEstado = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // bttGuardar
@@ -134,6 +137,10 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // RolesCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -155,6 +162,7 @@
             this.Load += new System.EventHandler(this.RolesCRUD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,5 +179,6 @@
         private TextBox txtNombreRol;
         private ComboBox comboBEstado;
         private PictureBox pictureBox1;
+        private ErrorProvider errorProvider1;
     }
 }

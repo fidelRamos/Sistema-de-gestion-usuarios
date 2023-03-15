@@ -28,10 +28,9 @@ namespace CapaPresentacion
             this.user = user;
             this.password = password;
         }
-
+        
         private void Form2_Load(object sender, EventArgs e)
         {
-            CargarProvincias();
             SqlDataReader reader= objCapaNegocio.reader(objCapaNegocio.GetDataAlumnos(user, password).Rows[0][3].ToString());
             while (reader.Read())
             {
@@ -59,33 +58,8 @@ namespace CapaPresentacion
             reader.Close();
             this.Controls.Add(menuStrip);
 
-
-            /*string valor ="";
-            List<string> valoresColumna = new List<string>();
-            int columnIndex = dataGridView1.Columns["NOMBRE_OPCION"].Index;
-
-            if (dataGridView1.RowCount > 0)
-            {
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                        valor = Convert.ToString(dataGridView1.Rows[i].Cells[columnIndex].Value);
-                        valoresColumna.Add(valor);
-                }
-                listBox1.DataSource = valoresColumna;
-            }
-            else
-            {
-                
-                MessageBox.Show("El rol no tiene opc de modulo asignado");
-            }*/
-
         }
-        private void CargarProvincias()
-        {
-
-            //dataGridView1.DataSource = objCapaNegocio.InfoUser(objCapaNegocio.GetDataAlumnos(user, password).Rows[0][0].ToString());
-        }
-
+       
         private void  item_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
