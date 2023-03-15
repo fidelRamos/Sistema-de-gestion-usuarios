@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpcModCRUD));
             this.bttGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvOpcMod = new System.Windows.Forms.DataGridView();
@@ -206,6 +207,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bttGuardar);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "OpcModCRUD";
             this.Text = "Mantenimiento Opciones de Modulos";

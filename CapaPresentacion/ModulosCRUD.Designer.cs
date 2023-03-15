@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModulosCRUD));
             this.bttGuardar = new System.Windows.Forms.Button();
             this.dgvModulos = new System.Windows.Forms.DataGridView();
             this.bttEditar = new System.Windows.Forms.Button();
@@ -170,6 +171,7 @@
             this.Controls.Add(this.dgvModulos);
             this.Controls.Add(this.bttGuardar);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ModulosCRUD";
             this.Text = "ModulosCRUD";
