@@ -25,7 +25,7 @@ namespace CapaPresentacion
         }
 
        
-
+        // se modifico validaciones
         private void bttGuardar_Click(object sender, EventArgs e)
         {
             if (edicion == false)
@@ -33,8 +33,12 @@ namespace CapaPresentacion
                 try
                 {
                     objectCN.InsertarRol(txtNombreRol.Text);
-                    MessageBox.Show("Registro insertado");
-                    CargarRoles();
+                    BorrarMensajeError();
+                    if (ValidarCampos())
+                    {
+                        MessageBox.Show("Ingreso Correcto");
+                        CargarRoles();
+                    }
                     LimpiarCampos();
                 }
                 catch (Exception ex)
@@ -61,6 +65,7 @@ namespace CapaPresentacion
                 }
             }
         }
+        //
 
         private void bttEditar_Click(object sender, EventArgs e)
         {
@@ -116,5 +121,47 @@ namespace CapaPresentacion
             txtNombreRol.Text = "";
             comboBEstado.Text = "";
         }
+
+        // se agrego validacion
+        private void txtNombreRol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres de usuario permitido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+
+        //se agrego validacion
+        private bool ValidarCampos()
+        {
+            bool ok = true;
+
+            if (txtNombreRol.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNombreRol, "Ingresa un nombre para el Rol");
+            }
+
+            if (comboBEstado.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(comboBEstado, "Selecciona una opcion");
+            }
+
+            return ok;
+        }
+        //
+
+        //se agrego validacion
+        private void BorrarMensajeError()
+        {
+            errorProvider1.SetError(txtNombreRol, "");
+            errorProvider1.SetError(comboBEstado, "");
+        }
+        //
     }
 }

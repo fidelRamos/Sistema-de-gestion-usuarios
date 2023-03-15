@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.bttGuardar = new System.Windows.Forms.Button();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.bttEditar = new System.Windows.Forms.Button();
@@ -36,14 +37,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombreRol = new System.Windows.Forms.TextBox();
             this.comboBEstado = new System.Windows.Forms.ComboBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // bttGuardar
             // 
-            this.bttGuardar.Location = new System.Drawing.Point(87, 248);
+            this.bttGuardar.Location = new System.Drawing.Point(99, 331);
+            this.bttGuardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bttGuardar.Name = "bttGuardar";
-            this.bttGuardar.Size = new System.Drawing.Size(75, 23);
+            this.bttGuardar.Size = new System.Drawing.Size(86, 31);
             this.bttGuardar.TabIndex = 0;
             this.bttGuardar.Text = "Guardar";
             this.bttGuardar.UseVisualStyleBackColor = true;
@@ -52,17 +56,20 @@
             // dgvRoles
             // 
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRoles.Location = new System.Drawing.Point(306, 51);
+            this.dgvRoles.Location = new System.Drawing.Point(350, 68);
+            this.dgvRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvRoles.Name = "dgvRoles";
+            this.dgvRoles.RowHeadersWidth = 51;
             this.dgvRoles.RowTemplate.Height = 25;
-            this.dgvRoles.Size = new System.Drawing.Size(439, 286);
+            this.dgvRoles.Size = new System.Drawing.Size(502, 381);
             this.dgvRoles.TabIndex = 1;
             // 
             // bttEditar
             // 
-            this.bttEditar.Location = new System.Drawing.Point(309, 357);
+            this.bttEditar.Location = new System.Drawing.Point(353, 476);
+            this.bttEditar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bttEditar.Name = "bttEditar";
-            this.bttEditar.Size = new System.Drawing.Size(75, 23);
+            this.bttEditar.Size = new System.Drawing.Size(86, 31);
             this.bttEditar.TabIndex = 2;
             this.bttEditar.Text = "Editar";
             this.bttEditar.UseVisualStyleBackColor = true;
@@ -70,9 +77,10 @@
             // 
             // bttEliminar
             // 
-            this.bttEliminar.Location = new System.Drawing.Point(402, 359);
+            this.bttEliminar.Location = new System.Drawing.Point(459, 479);
+            this.bttEliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bttEliminar.Name = "bttEliminar";
-            this.bttEliminar.Size = new System.Drawing.Size(75, 23);
+            this.bttEliminar.Size = new System.Drawing.Size(86, 31);
             this.bttEliminar.TabIndex = 3;
             this.bttEliminar.Text = "Eliminar";
             this.bttEliminar.UseVisualStyleBackColor = true;
@@ -81,27 +89,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 121);
+            this.label1.Location = new System.Drawing.Point(30, 161);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 15);
+            this.label1.Size = new System.Drawing.Size(115, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Nombre del Rol";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 192);
+            this.label2.Location = new System.Drawing.Point(30, 256);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 15);
+            this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Estado";
             // 
             // txtNombreRol
             // 
-            this.txtNombreRol.Location = new System.Drawing.Point(122, 118);
+            this.txtNombreRol.Location = new System.Drawing.Point(139, 157);
+            this.txtNombreRol.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombreRol.Name = "txtNombreRol";
-            this.txtNombreRol.Size = new System.Drawing.Size(147, 23);
+            this.txtNombreRol.Size = new System.Drawing.Size(167, 27);
             this.txtNombreRol.TabIndex = 6;
+            this.txtNombreRol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreRol_KeyPress);
             // 
             // comboBEstado
             // 
@@ -109,16 +119,21 @@
             this.comboBEstado.Items.AddRange(new object[] {
             "A",
             "N"});
-            this.comboBEstado.Location = new System.Drawing.Point(122, 184);
+            this.comboBEstado.Location = new System.Drawing.Point(139, 245);
+            this.comboBEstado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBEstado.Name = "comboBEstado";
-            this.comboBEstado.Size = new System.Drawing.Size(121, 23);
+            this.comboBEstado.Size = new System.Drawing.Size(138, 28);
             this.comboBEstado.TabIndex = 7;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // RolesCRUD
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 600);
             this.Controls.Add(this.comboBEstado);
             this.Controls.Add(this.txtNombreRol);
             this.Controls.Add(this.label2);
@@ -127,10 +142,12 @@
             this.Controls.Add(this.bttEditar);
             this.Controls.Add(this.dgvRoles);
             this.Controls.Add(this.bttGuardar);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RolesCRUD";
             this.Text = "Mantenimiento de Roles";
             this.Load += new System.EventHandler(this.RolesCRUD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +163,6 @@
         private Label label2;
         private TextBox txtNombreRol;
         private ComboBox comboBEstado;
+        private ErrorProvider errorProvider1;
     }
 }

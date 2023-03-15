@@ -28,6 +28,8 @@ namespace CapaPresentacion
             CargarRoles();
         }
 
+
+        //se modifico validacion
         private void bttGuardar_Click(object sender, EventArgs e)
         {
             if (edicion == false)
@@ -35,8 +37,13 @@ namespace CapaPresentacion
                 try
                 {
                     objectCN.InsertarUsuario(txtUsername.Text, txtContrasena.Text, CbBxIDRol.Text, txtNombres.Text, txtNumCel.Text, txtDireccDomic.Text, txtCorreo.Text);
-                    MessageBox.Show("Registro insertado");
-                    CargarUsuarios();
+                    BorrarMensajeError();
+                    if (ValidarCampos())
+                    {
+                        MessageBox.Show("Ingreso Correcto");
+                        CargarUsuarios();
+                        CargarRoles();
+                    }
                     LimpiarCampos();
                 }
                 catch (Exception ex)
@@ -63,6 +70,7 @@ namespace CapaPresentacion
                 }
             }
         }
+        //
 
         private void bttEditar_Click(object sender, EventArgs e)
         {
@@ -144,7 +152,122 @@ namespace CapaPresentacion
             int indice = CbBxIDRol.SelectedIndex+1;
             txtIDrol.Text = objectCN.GetRol(indice);
         }
-        
+
+
+        //se agrego validacion
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres de usuario permitido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        //se agrego validacion
+        private void txtContrasena_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres de contraseña permitido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        //se agrego validacion
+        private void txtNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 33 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres para nombres permitido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        //se agrego validacion
+        private void txtNumCel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres para numero celular permitido", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void txtDireccDomic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 33 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres permitidos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        //se agrego validacion
+        private bool ValidarCampos()
+        {
+            bool ok = true;
+
+            if (txtUsername.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtUsername, "Ingresa un nombre de usuario");
+            }
+
+            if (txtContrasena.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtContrasena, "Ingresa una contraseña");
+            }
+
+            if (txtNombres.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNombres, "Ingresa un nombre");
+            }
+
+            if (txtNumCel.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNumCel, "Ingresa un numero de telefono");
+            }
+
+            if (txtDireccDomic.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtDireccDomic, "Ingresa una direccion domiciliaria valida");
+            }
+
+            if (txtCorreo.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtCorreo, "Ingresa un correo electronico");
+            }
+            return ok;
+        }
+        //
+
+        //se agrego validacion
+        private void BorrarMensajeError()
+        {
+            errorProvider1.SetError(txtUsername, "");
+            errorProvider1.SetError(txtContrasena, "");
+            errorProvider1.SetError(txtNombres, "");
+            errorProvider1.SetError(txtNumCel, "");
+            errorProvider1.SetError(txtDireccDomic, "");
+            errorProvider1.SetError(txtCorreo, "");
+        }
+        //
+
     }
-    
+
 }

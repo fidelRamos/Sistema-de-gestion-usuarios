@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
@@ -36,24 +37,30 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.PB_user = new System.Windows.Forms.PictureBox();
             this.GB_session = new System.Windows.Forms.GroupBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PB_user)).BeginInit();
             this.GB_session.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxUser
             // 
             this.textBoxUser.Location = new System.Drawing.Point(114, 26);
             this.textBoxUser.Name = "textBoxUser";
+            this.textBoxUser.ShortcutsEnabled = false;
             this.textBoxUser.Size = new System.Drawing.Size(125, 27);
             this.textBoxUser.TabIndex = 0;
+            this.textBoxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             // 
             // textBoxPass
             // 
             this.textBoxPass.Location = new System.Drawing.Point(114, 78);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
+            this.textBoxPass.ShortcutsEnabled = false;
             this.textBoxPass.Size = new System.Drawing.Size(125, 27);
             this.textBoxPass.TabIndex = 1;
+            this.textBoxPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPass_KeyPress);
             // 
             // label1
             // 
@@ -107,6 +114,10 @@
             this.GB_session.TabStop = false;
             this.GB_session.Text = "Datos de sesion";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -121,6 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PB_user)).EndInit();
             this.GB_session.ResumeLayout(false);
             this.GB_session.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -134,5 +146,6 @@
         private Button btnLogin;
         private PictureBox PB_user;
         private GroupBox GB_session;
+        private ErrorProvider errorProvider1;
     }
 }

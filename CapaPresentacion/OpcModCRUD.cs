@@ -29,6 +29,7 @@ namespace CapaPresentacion
 
         }
 
+        // se modifico validacion
         private void bttGuardar_Click(object sender, EventArgs e)
         {
             if (edicion == false)
@@ -36,8 +37,11 @@ namespace CapaPresentacion
                 try
                 {
                     objectCN.InsertarOpcMod(txtNombreOPC.Text, cbIDMod.Text);
-                    MessageBox.Show("Registro insertado");
-                    CargarOpcMod();
+                    if (ValidarCampos())
+                    {
+                        MessageBox.Show("Ingreso Correcto");
+                        CargarModulos();
+                    }
                     LimpiarCampos();
                 }
                 catch (Exception ex)
@@ -68,6 +72,7 @@ namespace CapaPresentacion
                 }
             }
         }
+        //
 
         private void bttEditar_Click(object sender, EventArgs e)
         {
@@ -147,5 +152,58 @@ namespace CapaPresentacion
             int indice = cbIDMod.SelectedIndex + 1;
             txtNombreMod.Text = objectCN.GetMod(indice);
         }
+
+        //se agrego validacion
+        private void txtNombreOPC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres permitidos para nombres de opciones", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        // se agrego validacion
+        private void txtNombreObj_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres permitidos para nombres de objetos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        //se agrego validacion
+        private bool ValidarCampos()
+        {
+            bool ok = true;
+
+            if (txtNombreObj.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNombreObj, "Ingresa un nombre para la opcion");
+            }
+
+            if (txtNombreOPC.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNombreOPC, "Ingresa un nombre para el objeto");
+            }
+
+            return ok;
+        }
+        //
+
+        //se agrego validacion
+        private void BorrarMensajeError()
+        {
+            errorProvider1.SetError(txtNombreOPC, "");
+            errorProvider1.SetError(txtNombreObj, "");
+        }
+        //
     }
 }

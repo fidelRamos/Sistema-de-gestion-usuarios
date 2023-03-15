@@ -25,7 +25,8 @@ namespace CapaPresentacion
         {
             CargarModulos();
         }
-
+        
+        // se altero validacion
         private void bttGuardar_Click(object sender, EventArgs e)
         {
             if (edicion == false)
@@ -33,8 +34,12 @@ namespace CapaPresentacion
                 try
                 {
                     objectCN.InsertarModulo(txtNombreMod.Text, txtNombreObj.Text);
-                    MessageBox.Show("Registro insertado");
-                    CargarModulos();
+                    BorrarMensajeError();
+                    if (ValidarCampos())
+                    {
+                        MessageBox.Show("Ingreso Correcto");
+                        CargarModulos();
+                    }
                     LimpiarCampos();
                 }
                 catch (Exception ex)
@@ -63,6 +68,7 @@ namespace CapaPresentacion
                 }
             }
         }
+        //
 
         private void bttEditar_Click(object sender, EventArgs e)
         {
@@ -122,5 +128,58 @@ namespace CapaPresentacion
             txtNombreObj.Text = "";
             cbEstado.Text = "";
         }
+
+        // se agrego validacion
+        private void txtNombreMod_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres permitidos para nombres de modulos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        // se agrego validacion
+        private void txtNombreObj_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo caracteres permitidos para nombres de objetos relacionados al modulo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+        //
+
+        //se agrego validacion
+        private bool ValidarCampos()
+        {
+            bool ok = true;
+
+            if (txtNombreMod.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNombreMod, "Ingresa un nombre para el modulo");
+            }
+
+            if (txtNombreObj.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(txtNombreObj, "Ingresa un nombre para el objeto");
+            }
+
+            return ok;
+        }
+        //
+
+        //se agrego validacion
+        private void BorrarMensajeError()
+        {
+            errorProvider1.SetError(txtNombreMod, "");
+            errorProvider1.SetError(txtNombreObj, "");
+        }
+        //
+
     }
 }
