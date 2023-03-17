@@ -78,6 +78,7 @@
             this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRoles.Size = new System.Drawing.Size(546, 175);
             this.dgvRoles.TabIndex = 2;
+            this.dgvRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellClick);
             this.dgvRoles.SelectionChanged += new System.EventHandler(this.dgvRoles_SelectionChanged);
             // 
             // dgvModulos
@@ -90,6 +91,7 @@
             this.dgvModulos.RowTemplate.Height = 25;
             this.dgvModulos.Size = new System.Drawing.Size(541, 200);
             this.dgvModulos.TabIndex = 3;
+            this.dgvModulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModulos_CellClick);
             // 
             // bttEliminar
             // 

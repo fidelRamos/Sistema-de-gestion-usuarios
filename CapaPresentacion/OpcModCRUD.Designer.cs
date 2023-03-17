@@ -80,6 +80,7 @@
             this.dgvOpcMod.RowTemplate.Height = 25;
             this.dgvOpcMod.Size = new System.Drawing.Size(475, 256);
             this.dgvOpcMod.TabIndex = 2;
+            this.dgvOpcMod.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOpcMod_CellClick);
             // 
             // bttEditar
             // 

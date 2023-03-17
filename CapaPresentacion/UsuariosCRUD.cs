@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace CapaPresentacion
     {
         CN_GetData objectCN = new CN_GetData();
         bool edicion = false;
-
+        int index;
         public UsuariosCRUD()
         {
             InitializeComponent();
@@ -54,8 +55,8 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    int indiceSelect = dgvUsuarios.CurrentCell.RowIndex + 1;
-                    objectCN.ActualizarUsuario(indiceSelect.ToString(), txtUsername.Text, txtContrasena.Text, CbBxIDRol.Text, txtNombres.Text, txtNumCel.Text, txtDireccDomic.Text, txtCorreo.Text);
+                    
+                    objectCN.ActualizarUsuario(index.ToString(), txtUsername.Text, txtContrasena.Text, CbBxIDRol.Text, txtNombres.Text, txtNumCel.Text, txtDireccDomic.Text, txtCorreo.Text);
                     MessageBox.Show("Registro Modificado");
                     edicion = false;
                     CargarUsuarios();
@@ -98,12 +99,12 @@ namespace CapaPresentacion
         {
             if (dgvUsuarios.SelectedRows.Count > 0)
             {
-                int indiceSelect = dgvUsuarios.CurrentCell.RowIndex + 1;
+                
                 try
                 {
                     if (MessageBox.Show("¿Desea eliminar el registro seleccionado ?", "Eliminar Registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        objectCN.EliminarUsuario(indiceSelect.ToString());
+                        objectCN.EliminarUsuario(index.ToString());
                         MessageBox.Show("Registro Eliminado!");
                         CargarUsuarios();
 
@@ -147,7 +148,7 @@ namespace CapaPresentacion
         }
         private void CbBxIDRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int indice = CbBxIDRol.SelectedIndex+1;
+            int indice = Int32.Parse(CbBxIDRol.Text);
             txtIDrol.Text = objectCN.GetRol(indice);
         }
 
@@ -264,6 +265,11 @@ namespace CapaPresentacion
             errorProvider1.SetError(txtNumCel, "");
             errorProvider1.SetError(txtDireccDomic, "");
             errorProvider1.SetError(txtCorreo, "");
+        }
+
+        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = Convert.ToInt32(dgvUsuarios.Rows[e.RowIndex].Cells[0].Value);
         }
         //
 

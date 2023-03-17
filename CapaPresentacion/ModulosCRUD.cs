@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +16,7 @@ namespace CapaPresentacion
     {
         CN_GetData objectCN = new CN_GetData();
         bool edicion = false;
-
+        int index;
         public ModulosCRUD()
         {
             InitializeComponent();
@@ -52,8 +53,8 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    int indiceSelect = dgvModulos.CurrentCell.RowIndex + 1;
-                    //objectCN.ActualizarUsuario(indiceSelect.ToString(), txtUsername.Text, txtContrasena.Text, CbBxIDRol.Text, txtNombres.Text, txtNumCel.Text, txtDireccDomic.Text, txtCorreo.Text);
+                    
+                    objectCN.ActualizarModulo(index.ToString(), txtNombreMod.Text, txtNombreObj.Text, cbEstado.Text);
                     MessageBox.Show("Registro Modificado");
                     edicion = false;
                     lbEstado.Visible = false;
@@ -95,12 +96,12 @@ namespace CapaPresentacion
         {
             if (dgvModulos.SelectedRows.Count > 0)
             {
-                int indiceSelect = dgvModulos.CurrentCell.RowIndex + 1;
+                
                 try
                 {
                     if (MessageBox.Show("¿Desea eliminar el registro seleccionado ?", "Eliminar Registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        objectCN.EliminarUsuario(indiceSelect.ToString());
+                        objectCN.EliminarModulo(index.ToString());
                         MessageBox.Show("Registro Eliminado!");
                         CargarModulos();
 
@@ -154,6 +155,11 @@ namespace CapaPresentacion
         {
             errorProvider1.SetError(txtNombreMod, "");
             errorProvider1.SetError(txtNombreObj, "");
+        }
+
+        private void dgvModulos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = Convert.ToInt32(dgvModulos.Rows[e.RowIndex].Cells[0].Value);
         }
         //
     }

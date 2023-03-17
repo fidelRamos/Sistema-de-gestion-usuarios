@@ -79,6 +79,7 @@
             this.dgvUsuarios.RowTemplate.Height = 25;
             this.dgvUsuarios.Size = new System.Drawing.Size(723, 402);
             this.dgvUsuarios.TabIndex = 1;
+            this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
             // 
             // bttEditar
             // 

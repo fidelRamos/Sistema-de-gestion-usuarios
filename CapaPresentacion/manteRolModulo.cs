@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace CapaPresentacion
     public partial class manteRolModulo : Form
     {
         CN_GetData objectCN = new CN_GetData();
-
+        int indexRol;
+        int indexModulo;
         public manteRolModulo()
         {
             InitializeComponent();
@@ -49,15 +51,15 @@ namespace CapaPresentacion
         {
             if (dgvModulos.SelectedRows.Count > 0 && dgvRoles.SelectedRows.Count>0)
             {
-                int indiceRol = dgvRoles.CurrentCell.RowIndex + 1;
+                
                 DataGridViewRow fila = dgvModulos.SelectedRows[0];
-                string valor = fila.Cells[0].Value.ToString();
+               
 
                 try
                 {
                     if (MessageBox.Show("¿Desea eliminar el registro seleccionado ?", "Eliminar Registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        objectCN.EliminarOpcModDelRol(valor,indiceRol.ToString());
+                        objectCN.EliminarOpcModDelRol(indexModulo.ToString(),indexRol.ToString());
                         MessageBox.Show("Registro Eliminado!");
                         CargarModulos();
 
@@ -76,7 +78,7 @@ namespace CapaPresentacion
         }
         private void dgvRoles_SelectionChanged(object sender, EventArgs e)
         {
-            CargarModulos();
+            
         }
 
         private void CargarRoles()
@@ -85,8 +87,9 @@ namespace CapaPresentacion
         }
         public void CargarModulos()
         {
-                int indiceSelect = dgvRoles.CurrentCell.RowIndex + 1;
-                dgvModulos.DataSource = objectCN.GetOpcModDelRol(indiceSelect.ToString());
+            
+             dgvModulos.DataSource = objectCN.GetOpcModDelRol(indexRol.ToString());
+            
         }
         public void LimpiarCampos()
         {
@@ -119,14 +122,27 @@ namespace CapaPresentacion
 
         private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int indiceSelect = cbRol.SelectedIndex + 1;
+            int indiceSelect = Int32.Parse(cbRol.Text);
             txtRol.Text = objectCN.GetRol(indiceSelect);
         }
 
         private void cbModulos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int indiceSelect = cbModulos.SelectedIndex+1;
+            int indiceSelect = Int32.Parse(cbModulos.Text);
             txtModulo.Text = objectCN.GetOpcMod(indiceSelect);
+        }
+
+        private void dgvRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            indexRol = Convert.ToInt32(dgvRoles.Rows[e.RowIndex].Cells[0].Value);
+            //MessageBox.Show(indexRol.ToString());
+            CargarModulos();
+        }
+
+        private void dgvModulos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            indexModulo = Convert.ToInt32(dgvModulos.Rows[e.RowIndex].Cells[0].Value);
+            //MessageBox.Show(indexModulo.ToString());
         }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace CapaPresentacion
     {
         CN_GetData objectCN = new CN_GetData();
         bool edicion = false;
+        int index;
         public OpcModCRUD()
         {
             InitializeComponent();
@@ -41,7 +43,7 @@ namespace CapaPresentacion
                         MessageBox.Show("Ingreso Correcto");
                         CargarModulos();
                     }
-                    LimpiarCampos();
+                    CargarOpcMod();
                     LimpiarCampos();
                 }
                 catch (Exception ex)
@@ -54,8 +56,8 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    int indiceSelect = dgvOpcMod.CurrentCell.RowIndex + 1;
-                    objectCN.ActualizarOpcMod(indiceSelect.ToString(), txtNombreOPC.Text, txtNombreObj.Text, cbIDMod.Text, cbEstado.Text);
+                    
+                    objectCN.ActualizarOpcMod(index.ToString(), txtNombreOPC.Text, txtNombreObj.Text, cbIDMod.Text, cbEstado.Text);
                     MessageBox.Show("Registro Modificado");
                     edicion = false;
                     lbNombreObj.Visible = false;
@@ -103,12 +105,12 @@ namespace CapaPresentacion
         {
             if (dgvOpcMod.SelectedRows.Count > 0)
             {
-                int indiceSelect = dgvOpcMod.CurrentCell.RowIndex + 1;
+               
                 try
                 {
                     if (MessageBox.Show("¿Desea eliminar el registro seleccionado ?", "Eliminar Registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        objectCN.EliminarOpcMod(indiceSelect.ToString());
+                        objectCN.EliminarOpcMod(index.ToString());
                         MessageBox.Show("Registro Eliminado!");
                         CargarOpcMod();
                     }
@@ -150,7 +152,7 @@ namespace CapaPresentacion
 
         private void cbIDMod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int indice = cbIDMod.SelectedIndex + 1;
+            int indice = Int32.Parse(cbIDMod.Text);
             txtNombreMod.Text = objectCN.GetMod(indice);
         }
 
@@ -204,6 +206,11 @@ namespace CapaPresentacion
         {
             errorProvider1.SetError(txtNombreOPC, "");
             errorProvider1.SetError(txtNombreObj, "");
+        }
+
+        private void dgvOpcMod_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = Convert.ToInt32(dgvOpcMod.Rows[e.RowIndex].Cells[0].Value);
         }
         //
     }

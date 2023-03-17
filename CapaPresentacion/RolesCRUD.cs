@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace CapaPresentacion
     {
         CN_GetData objectCN = new CN_GetData();
         bool edicion = false;
+        int index;
         public RolesCRUD()
         {
             InitializeComponent();
@@ -51,8 +53,8 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    int indiceSelect = dgvRoles.CurrentCell.RowIndex + 1;
-                    objectCN.ActualizarRol(indiceSelect.ToString(), txtNombreRol.Text, comboBEstado.Text);
+                    
+                    objectCN.ActualizarRol(index.ToString(), txtNombreRol.Text, comboBEstado.Text);
                     MessageBox.Show("Registro Modificado");
                     edicion = false;
                     CargarRoles();
@@ -91,12 +93,12 @@ namespace CapaPresentacion
         {
             if (dgvRoles.SelectedRows.Count > 0)
             {
-                int indiceSelect = dgvRoles.CurrentCell.RowIndex+1;
+                
                 try
                 {
                     if (MessageBox.Show("¿Desea eliminar el registro seleccionado ?", "Eliminar Registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        objectCN.EliminarRol(indiceSelect.ToString());
+                        objectCN.EliminarRol(index.ToString());
                         MessageBox.Show("Registro Eliminado!");
                         CargarRoles();
 
@@ -163,6 +165,11 @@ namespace CapaPresentacion
         {
             errorProvider1.SetError(txtNombreRol, "");
             errorProvider1.SetError(comboBEstado, "");
+        }
+
+        private void dgvRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = Convert.ToInt32(dgvRoles.Rows[e.RowIndex].Cells[0].Value);
         }
         //
 

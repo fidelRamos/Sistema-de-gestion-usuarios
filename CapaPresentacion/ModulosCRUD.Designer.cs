@@ -68,6 +68,7 @@
             this.dgvModulos.RowTemplate.Height = 25;
             this.dgvModulos.Size = new System.Drawing.Size(504, 234);
             this.dgvModulos.TabIndex = 1;
+            this.dgvModulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModulos_CellClick);
             // 
             // bttEditar
             // 

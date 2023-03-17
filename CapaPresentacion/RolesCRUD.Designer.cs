@@ -66,6 +66,7 @@
             this.dgvRoles.RowTemplate.Height = 25;
             this.dgvRoles.Size = new System.Drawing.Size(502, 202);
             this.dgvRoles.TabIndex = 1;
+            this.dgvRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellClick);
             // 
             // bttEditar
             // 

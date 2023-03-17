@@ -96,8 +96,8 @@ namespace CapaDatos
             sqlCommand.CommandText = "modificar_rol";
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@idRol", idRol);
-            sqlCommand.Parameters.AddWithValue("@nombreRol", estado);
-            sqlCommand.Parameters.AddWithValue("@estado", nombreRol);
+            sqlCommand.Parameters.AddWithValue("@nombreRol", nombreRol);
+            sqlCommand.Parameters.AddWithValue("@estado", estado);
             sqlCommand.ExecuteNonQuery();
             db_connection.CloseConnection();
         }
@@ -220,7 +220,7 @@ namespace CapaDatos
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@idMod", idModulo);
             sqlCommand.Parameters.AddWithValue("@nombreMod", nombreMod);
-            sqlCommand.Parameters.AddWithValue("@nombreObj", nombreMod);
+            sqlCommand.Parameters.AddWithValue("@nombreObj", nombreObj);
             sqlCommand.Parameters.AddWithValue("@estado", estado);
 
             sqlCommand.ExecuteNonQuery();
@@ -277,7 +277,7 @@ namespace CapaDatos
             sqlCommand.CommandText = "modificar_opc_mod";
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@id_opc_mod", id_opc_mod);
-            sqlCommand.Parameters.AddWithValue("@nombreOpcion", nombreOpcion);
+            sqlCommand.Parameters.AddWithValue("@nombre_Opc", nombreOpcion);
             sqlCommand.Parameters.AddWithValue("@nombre_Objeto", nombre_Objeto);
             sqlCommand.Parameters.AddWithValue("@idModulo", idModulo);
             sqlCommand.Parameters.AddWithValue("@estado", estado);
@@ -368,20 +368,6 @@ namespace CapaDatos
             sqlCommand.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
         }
-        public void ModificarOpcModDelRol(int idOpcModRol,int @idOpcMod, int @idRol, char estado)
-        {
-            DataTable dataTable = new DataTable();
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.Connection = db_connection.OpenConnection();
-            sqlCommand.CommandText = "editarModRol ";
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@idOpcModRol", idOpcModRol);
-            sqlCommand.Parameters.AddWithValue("@@idOpcMod", @idOpcMod);
-            sqlCommand.Parameters.AddWithValue("@@idRol", @idRol);
-            sqlCommand.Parameters.AddWithValue("@estado", estado);
-            
-            sqlCommand.ExecuteNonQuery();
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-        }
+
     }
 }
